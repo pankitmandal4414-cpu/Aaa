@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Share Camera With Consent</title><link rel="stylesheet" href="/style.css"></head>
+<body><main><div class="brand">[ SECURE // CAMERA SHARE ]</div><h1>Share your camera voluntarily</h1>
+<section class="panel"><span class="pill">ONE-TO-ONE LIVE VIDEO</span>
+<p class="sub">You are about to share live camera video with the person who sent you this invitation. Nothing starts until you press the button and grant camera permission.</p>
+<p class="small">By continuing, you understand that the other person can see the live video while sharing is active. Do not share if you do not know or trust the recipient. You can stop at any time.</p>
+<label><input id="consent" type="checkbox" style="width:auto;margin-right:8px">I understand and choose to share my camera with the invitation sender.</label>
+<button id="startBtn" disabled>Agree &amp; start camera sharing</button><button id="stopBtn" class="danger hidden">Stop sharing now</button>
+<div id="status" class="status" aria-live="polite">Check the consent box to continue. Your browser will ask for camera permission.</div>
+<div class="video-wrap"><video id="localVideo" autoplay playsinline muted></video><span id="videoPlaceholder">Your camera preview will appear here after you grant permission.</span></div>
+<p class="small">The camera indicator in your browser/device should remain visible while the camera is active. Closing this page also ends sharing.</p>
+</section></main><script src="/share.js" defer></script></body></html>

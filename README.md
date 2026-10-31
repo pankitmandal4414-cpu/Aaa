@@ -1,36 +1,41 @@
-# Cyber Access Demo 2.0
+# Consent-based one-to-one live camera sharing
 
-A Matrix-inspired, static cybersecurity learning demo for GitHub Pages.
+This project adds a private dashboard and an explicit visitor-controlled camera-sharing page to the Matrix-style demo.
 
-## Files
+## Privacy and safety behaviour
 
-- `index.html` — page structure
-- `style.css` — Matrix-style visual design
-- `app.js` — browser inspection, camera preview, connection indicators, and simulated scan
+- The visitor must tick a clear consent checkbox, click **Agree & start camera sharing**, and grant the browser's camera permission.
+- The visitor sees their own preview and a visible Stop button while the camera is active.
+- The dashboard cannot activate the visitor's camera.
+- One visitor can connect per invitation. Each invite is single-use and expires after 10 minutes.
+- The app does not record, store, or upload video to this server. WebRTC sends the media peer-to-peer when possible. The server relays only connection setup messages (offer/answer/ICE).
+- The dashboard is password-protected. Use a unique password of at least 16 characters.
+- Share invitations only with people who knowingly agree to participate. Do not disguise the camera-sharing purpose.
 
-## Publish with GitHub Pages
+## Important hosting change
 
-1. Create a public GitHub repository.
-2. Upload all three files (`index.html`, `style.css`, `app.js`) to the repository root.
-3. Open **Settings → Pages**.
-4. Under **Build and deployment**, choose **Deploy from a branch**.
-5. Select branch `main` and folder `/ (root)`, then save.
-6. Open the Pages URL shown by GitHub.
+**GitHub Pages alone cannot run the Node.js signalling server.** Deploy this full repository to a Node.js host that provides HTTPS (for example, Render or another trusted Node host). You can keep the source code in GitHub; the host runs `server.js`.
 
-## Camera permission
+## Deploy
 
-Camera access requires a supported browser and a secure context, normally HTTPS. GitHub Pages provides HTTPS. The camera starts only after the visitor presses **Enable camera** and grants the browser permission. Press **Stop camera** to end the preview.
+1. Upload the entire project folder to a GitHub repository (keep `server.js`, `package.json`, `public/`, and `.gitignore` at the repository root).
+2. Create a Node web service from that GitHub repository on your chosen host.
+3. Build command: `npm install`
+4. Start command: `npm start`
+5. Add environment variable `DASHBOARD_PASSWORD` with a unique random password of 16+ characters. Do not put the real password in GitHub or in frontend code.
+6. Deploy. Open the HTTPS service URL and sign in at `/dashboard`.
 
-The camera stream is attached directly to the local video element. This project contains no upload endpoint, analytics, tracking code, or external JavaScript libraries.
+## Use
 
-## Privacy and limitations
+1. Sign in to `/dashboard`.
+2. Click **Create sharing link** and send the link privately to one person.
+3. The visitor opens the link, reads the notice, checks the consent box, clicks **Agree & start camera sharing**, and grants camera permission.
+4. Your dashboard displays the visitor's live stream once the connection is established.
+5. The visitor can click **Stop sharing now** or close the page at any time. You can end the session by signing out.
 
-- The page does not remotely access or control a phone.
-- Browser-reported values are limited and may be reduced or obscured by the browser.
-- The simulated scan is only an animation; it does not scan the device.
-- Do not add code to collect or transmit visitor information without clear, informed consent.
-- Test only devices and systems you own or have explicit permission to assess.
+## Technical notes
 
-## Fonts
-
-The stylesheet requests Google Fonts for appearance. If unavailable, system fallback fonts are used. No functionality depends on those fonts.
+- WebRTC uses a public STUN server for connection discovery. Some networks require a TURN relay; this starter project does not include one, so some connections may fail.
+- HTTPS is required for camera permission except on localhost.
+- The demo keeps sessions and invitation codes in server memory. Restarting the server invalidates them.
+- For production use, add a reputable TURN service, stronger account management, monitoring, and security review. Never store camera recordings unless participants have separately and explicitly agreed.
