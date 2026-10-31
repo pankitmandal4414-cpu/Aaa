@@ -7,6 +7,7 @@ const path = require("path");
 const { WebSocketServer, WebSocket } = require("ws");
 
 const app = express();
+app.set('trust proxy',1);
 const server = http.createServer(app);
 const wss = new WebSocketServer({ noServer: true });
 
