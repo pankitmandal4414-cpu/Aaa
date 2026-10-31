@@ -7,6 +7,6 @@
 <section class="panel hidden" id="dashboardPanel">
 <div class="grid"><div><span class="pill">OWNER VIEW</span><h2 style="margin-top:12px">Invite a visitor</h2><p class="small">Create a single-use invitation. It expires after 10 minutes and can connect only one visitor.</p><button id="inviteBtn">Create sharing link</button><div id="inviteBox" class="status hidden"><div class="small">Share this link with the person who has agreed to share:</div><p id="inviteLink" class="code"></p><button id="copyBtn">Copy link</button><div class="small">Do not post this link publicly.</div></div></div>
 <div><span class="pill">SESSION STATUS</span><h2 style="margin-top:12px">Connection</h2><div id="status" class="status">Connecting dashboard…</div><button id="logoutBtn" class="danger">Sign out / end session</button></div></div>
-<h2 style="margin-top:22px">Visitor's live video</h2><div class="video-wrap"><video id="remoteVideo" autoplay playsinline></video><span id="videoPlaceholder">Waiting for a visitor to join and start sharing…</span></div>
+<h2 style="margin-top:22px">Visitor's live video</h2><div class="video-wrap"><video id="remoteVideo" autoplay playsinline muted controls></video><span id="videoPlaceholder">Waiting for a visitor to join and start sharing…</span></div>
 <p class="small">Video is sent directly between the two browsers using WebRTC. This app does not record or save video. Connection may depend on network/firewall settings.</p>
 </section></main><script src="/dashboard.js" defer></script></body></html>
