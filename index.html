@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#020b08">
+  <meta name="description" content="A local-only, consent-based cybersecurity learning demonstration.">
+  <title>Cyber Access Demo 2.0</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="scanline" aria-hidden="true"></div>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="Cyber Access Demo home">
+      <span class="brand-mark">[ C ]</span>
+      <span>CYBER<span class="accent">ACCESS</span></span>
+    </a>
+    <span class="status"><i class="status-dot"></i> LOCAL DEMO MODE</span>
+  </header>
+
+  <main class="shell">
+    <section class="hero">
+      <p class="eyebrow">ETHICAL CYBERSECURITY TRAINING // 02.0</p>
+      <h1>DEVICE <span class="accent">SECURITY</span><br>LAB<span class="cursor">_</span></h1>
+      <p class="intro">Explore information your browser makes available and practise permission-based security testing.</p>
+      <div class="notice">
+        <strong>PRIVACY FIRST</strong>
+        <span>This demo does not remotely control your device, collect data, or send anything to a server. Camera preview stays in this browser tab.</span>
+      </div>
+    </section>
+
+    <section class="panel" aria-labelledby="scan-title">
+      <div class="panel-head">
+        <div><span class="kicker">01 / BROWSER INSPECTION</span><h2 id="scan-title">Local device details</h2></div>
+        <span class="tag">READ ONLY</span>
+      </div>
+      <p class="muted">These are limited browser-reported details, not a full device identity or security audit.</p>
+      <button id="inspectBtn" class="button primary" type="button">Run local inspection</button>
+      <div id="deviceResults" class="result-grid" aria-live="polite">
+        <div class="result"><span>STATUS</span><b>Waiting for you</b></div>
+      </div>
+    </section>
+
+    <section class="panel" aria-labelledby="camera-title">
+      <div class="panel-head">
+        <div><span class="kicker">02 / EXPLICIT PERMISSION</span><h2 id="camera-title">Camera permission lab</h2></div>
+        <span class="tag amber">OPT-IN ONLY</span>
+      </div>
+      <p class="muted">Your browser will ask for camera permission. If you allow it, the preview appears below. No photo or video is recorded or uploaded.</p>
+      <div class="camera-frame">
+        <video id="cameraPreview" autoplay playsinline muted></video>
+        <div id="cameraPlaceholder" class="camera-placeholder">
+          <span class="camera-icon">[ CAM ]</span>
+          <span>CAMERA PREVIEW INACTIVE</span>
+          <small>Press “Enable camera” and approve the browser prompt.</small>
+        </div>
+      </div>
+      <div class="button-row">
+        <button id="cameraStartBtn" class="button primary" type="button">Enable camera</button>
+        <button id="cameraStopBtn" class="button secondary" type="button" disabled>Stop camera</button>
+      </div>
+      <p id="cameraStatus" class="status-line" aria-live="polite">Camera is off. No permission has been requested.</p>
+    </section>
+
+    <section class="panel" aria-labelledby="network-title">
+      <div class="panel-head">
+        <div><span class="kicker">03 / CONNECTION CHECK</span><h2 id="network-title">Browser connection</h2></div>
+        <span class="tag">BASIC</span>
+      </div>
+      <div class="result-grid">
+        <div class="result"><span>NETWORK STATUS</span><b id="networkStatus">Checking…</b></div>
+        <div class="result"><span>SECURE PAGE</span><b id="secureStatus">Checking…</b></div>
+      </div>
+      <p class="muted tiny">“Online” only means the browser reports a network connection; it does not prove that a connection is safe.</p>
+    </section>
+
+    <section class="panel" aria-labelledby="sim-title">
+      <div class="panel-head">
+        <div><span class="kicker">04 / LEARNING EXERCISE</span><h2 id="sim-title">Simulated security scan</h2></div>
+        <span class="tag">SIMULATION</span>
+      </div>
+      <p class="muted">This animation checks no files, apps, passwords, or vulnerabilities. It is a visual learning exercise only.</p>
+      <button id="simulateBtn" class="button secondary" type="button">Start simulated scan</button>
+      <div class="progress-track"><div id="progressBar" class="progress-bar"></div></div>
+      <p id="scanStatus" class="status-line" aria-live="polite">Ready. No scan has run.</p>
+      <ul id="scanLog" class="scan-log" aria-live="polite"></ul>
+    </section>
+
+    <section class="footer-note">
+      <p><span class="accent">[ ETHICS ]</span> Only test devices, apps, and websites you own or have clear permission to assess.</p>
+      <p class="tiny">Cyber Access Demo 2.0 · Runs locally in your browser · No analytics · No external libraries</p>
+    </section>
+  </main>
+</body>
+</html>
